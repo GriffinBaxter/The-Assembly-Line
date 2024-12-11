@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dyqimxsygmcrv"]
+
+[node name="Leg" type="CSGCylinder3D"]
+radius = 0.025
+height = 0.5
+sides = 16
