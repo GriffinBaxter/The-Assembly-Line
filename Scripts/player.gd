@@ -4,8 +4,13 @@ const SPEED := 5.0
 const JUMP_VELOCITY := 4.5
 const SENSITIVITY := 0.002
 
+@export var parts: Array[CSGPrimitive3D]
+
+var held_part: CSGPrimitive3D
+
 @onready var head: Node3D = $Head
 @onready var camera_3d: Camera3D = $Head/Camera3D
+@onready var main: Node3D = $".."
 
 
 func _ready() -> void:
@@ -31,6 +36,31 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	move_and_slide()
+
+	if held_part != null:
+		if (
+			held_part.global_position.distance_to(main.assembly.global_position) < 1
+			and !main.assembly.assembled
+			and main.assembly.get_missing_part_file_path() == held_part.scene_file_path
+		):
+			main.assembly.add_missing_part()
+			held_part.queue_free()
+		elif Input.is_action_just_pressed("interact"):
+			held_part.queue_free()
+
+	if Input.is_action_just_pressed("interact") and held_part == null:
+		var min_part
+		var min_distance = INF
+		for part in parts:
+			var distance_to_part = global_position.distance_to(part.global_position)
+			if distance_to_part < min_distance and distance_to_part < 3:
+				min_part = part
+				min_distance = distance_to_part
+		if min_part:
+			held_part = min_part.duplicate()
+			held_part.rotation = Vector3(0, 0, 0)
+			held_part.position = Vector3(0, -0.5, -1.5)
+			camera_3d.add_child(held_part)
 
 
 func _unhandled_input(event: InputEvent) -> void:
