@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfpcrbb00te2p"]
+[gd_scene load_steps=11 format=3 uid="uid://cfpcrbb00te2p"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_n6l7l"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_va1j2"]
-[ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/chair_leg.tscn" id="3_51hmf"]
-[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/chair_leg_grey.tscn" id="4_7xyn0"]
+[ext_resource type="PackedScene" uid="uid://csctwey3hq0v0" path="res://Scenes/chair.tscn" id="2_ve6ix"]
+[ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/leg_red.tscn" id="3_51hmf"]
+[ext_resource type="PackedScene" uid="uid://fw0jw775xk0t" path="res://Scenes/table.tscn" id="3_wv2kn"]
+[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/leg_grey.tscn" id="4_7xyn0"]
+[ext_resource type="PackedScene" uid="uid://dihw1hvm3pehm" path="res://Scenes/part_holder.tscn" id="4_i8rpd"]
+[ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/leg_blue.tscn" id="7_gq6vx"]
 
 [sub_resource type="Environment" id="Environment_dwayo"]
 background_mode = 2
@@ -13,6 +17,7 @@ tonemap_mode = 2
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_n6l7l")
+assemblies = Array[PackedScene]([ExtResource("2_ve6ix"), ExtResource("3_wv2kn")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dwayo")
@@ -20,7 +25,7 @@ environment = SubResource("Environment_dwayo")
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("parts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("2_va1j2")
-parts = [NodePath("../Parts/Leg"), NodePath("../Parts/LegGrey")]
+parts = [NodePath("../Parts/LegRedPartHolder/LegRed"), NodePath("../Parts/LegGreyPartHolder/LegGrey"), NodePath("../Parts/LegBluePartHolder/LegBlue")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_so5g5")
@@ -64,8 +69,23 @@ omni_range = 16.0
 
 [node name="Parts" type="Node3D" parent="."]
 
-[node name="Leg" parent="Parts" instance=ExtResource("3_51hmf")]
-transform = Transform3D(-3.9616e-08, -0.906308, 0.422618, 1, -4.37114e-08, 0, 1.84732e-08, 0.422618, 0.906308, -4, 1.025, 0)
+[node name="LegRedPartHolder" parent="Parts" instance=ExtResource("4_i8rpd")]
+transform = Transform3D(1, -2.95005e-15, 0, 0, 1, 1.77636e-15, 0, 1.05625e-15, 1, -4, 1.25, -5.08013e-09)
+use_collision = true
 
-[node name="LegGrey" parent="Parts" instance=ExtResource("4_7xyn0")]
-transform = Transform3D(-1.13133e-08, -0.258819, 0.965926, 1, -4.37114e-08, 0, 4.2222e-08, 0.965926, 0.258819, 3, 1.025, 0)
+[node name="LegRed" parent="Parts/LegRedPartHolder" instance=ExtResource("3_51hmf")]
+transform = Transform3D(-3.9616e-08, -0.906308, 0.422618, 1, -4.37114e-08, -1.60993e-15, 1.84732e-08, 0.422618, 0.906308, 0, 0.275, 5.08013e-09)
+
+[node name="LegBluePartHolder" parent="Parts" instance=ExtResource("4_i8rpd")]
+transform = Transform3D(1, -2.95005e-15, 0, 0, 1, 1.77636e-15, 0, 1.05625e-15, 1, -4, 1.25, 2)
+use_collision = true
+
+[node name="LegBlue" parent="Parts/LegBluePartHolder" instance=ExtResource("7_gq6vx")]
+transform = Transform3D(-3.9616e-08, -0.906308, 0.422618, 1, -4.37114e-08, -1.60993e-15, 1.84732e-08, 0.422618, 0.906308, 0, 0.275, 0)
+
+[node name="LegGreyPartHolder" parent="Parts" instance=ExtResource("4_i8rpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.25, 4)
+use_collision = true
+
+[node name="LegGrey" parent="Parts/LegGreyPartHolder" instance=ExtResource("4_7xyn0")]
+transform = Transform3D(-1.13133e-08, -0.258819, 0.965926, 1, -4.37114e-08, 0, 4.2222e-08, 0.965926, 0.258819, 0, 0.275, 0)

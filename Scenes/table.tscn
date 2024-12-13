@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://fw0jw775xk0t"]
+
+[ext_resource type="Material" uid="uid://bciekiidw10ou" path="res://Materials/blue.tres" id="1_v0bu8"]
+[ext_resource type="Script" path="res://Scripts/assembly.gd" id="2_7nfxa"]
+[ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/leg_red.tscn" id="3_3iww8"]
+[ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/leg_blue.tscn" id="3_r6t8n"]
+[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/leg_grey.tscn" id="4_yvnyx"]
+
+[node name="Table" type="CSGBox3D" node_paths=PackedStringArray("missing_parts")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 0)
+use_collision = true
+size = Vector3(0.75, 0.05, 0.75)
+material = ExtResource("1_v0bu8")
+script = ExtResource("2_7nfxa")
+missing_parts = [NodePath("Leg1"), NodePath("Leg1Grey"), NodePath("Leg1Red")]
+
+[node name="Leg1" parent="." instance=ExtResource("3_r6t8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325, -0.275, 0.325)
+
+[node name="Leg1Red" parent="." instance=ExtResource("3_3iww8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325, -0.275, 0.325)
+
+[node name="Leg1Grey" parent="." instance=ExtResource("4_yvnyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325, -0.275, 0.325)
+
+[node name="Leg2" parent="." instance=ExtResource("3_r6t8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.325, -0.275, 0.325)
+
+[node name="Leg3" parent="." instance=ExtResource("3_r6t8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325, -0.275, -0.325)
+
+[node name="Leg4" parent="." instance=ExtResource("3_r6t8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.325, -0.275, -0.325)

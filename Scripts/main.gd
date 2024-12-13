@@ -1,13 +1,15 @@
 extends Node3D
 
-const CHAIR = preload("res://Scenes/chair.tscn")
+@export var assemblies: Array[PackedScene]
 
 var assembly: CSGPrimitive3D
+var rng = RandomNumberGenerator.new()
 
 
 func _ready() -> void:
 	while true:
-		assembly = CHAIR.instantiate()
+		var assembly_index = rng.randi_range(0, assemblies.size() - 1)
+		assembly = assemblies[assembly_index].instantiate()
 		assembly.position = Vector3(-10, 2.375, -2.5)
 		get_tree().get_root().add_child.call_deferred(assembly)
 		await assembly.ready

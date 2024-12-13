@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dihw1hvm3pehm"]
+
+[node name="PartHolder" type="CSGCylinder3D"]
+radius = 0.35
+height = 0.5
+sides = 32
