@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_n6l7l"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_va1j2"]
-[ext_resource type="PackedScene" uid="uid://csctwey3hq0v0" path="res://Scenes/chair.tscn" id="2_ve6ix"]
-[ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/leg_red.tscn" id="3_51hmf"]
-[ext_resource type="PackedScene" uid="uid://fw0jw775xk0t" path="res://Scenes/table.tscn" id="3_wv2kn"]
-[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/leg_grey.tscn" id="4_7xyn0"]
+[ext_resource type="PackedScene" uid="uid://csctwey3hq0v0" path="res://Scenes/Assemblies/chair.tscn" id="2_ve6ix"]
+[ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/Parts/leg_red.tscn" id="3_51hmf"]
+[ext_resource type="PackedScene" uid="uid://fw0jw775xk0t" path="res://Scenes/Assemblies/table.tscn" id="3_wv2kn"]
+[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/Parts/leg_grey.tscn" id="4_7xyn0"]
 [ext_resource type="PackedScene" uid="uid://dihw1hvm3pehm" path="res://Scenes/part_holder.tscn" id="4_i8rpd"]
-[ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/leg_blue.tscn" id="7_gq6vx"]
+[ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/Parts/leg_blue.tscn" id="7_gq6vx"]
 
 [sub_resource type="Environment" id="Environment_dwayo"]
 background_mode = 2

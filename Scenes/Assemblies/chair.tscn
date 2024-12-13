@@ -2,9 +2,9 @@
 
 [ext_resource type="Material" uid="uid://c421xqws56ym2" path="res://Materials/red.tres" id="1_0qmsr"]
 [ext_resource type="Script" path="res://Scripts/assembly.gd" id="1_pcwlk"]
-[ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/leg_red.tscn" id="2_cygre"]
-[ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/leg_blue.tscn" id="4_3iblw"]
-[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/leg_grey.tscn" id="4_b0ne7"]
+[ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/Parts/leg_red.tscn" id="2_cygre"]
+[ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/Parts/leg_blue.tscn" id="4_3iblw"]
+[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/Parts/leg_grey.tscn" id="4_b0ne7"]
 
 [node name="Seat" type="CSGBox3D" node_paths=PackedStringArray("missing_parts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
