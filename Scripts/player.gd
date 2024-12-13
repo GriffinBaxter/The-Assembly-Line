@@ -41,9 +41,9 @@ func _process(_delta: float) -> void:
 		if (
 			held_part.global_position.distance_to(main.assembly.global_position) < 1
 			and !main.assembly.assembled
-			and main.assembly.get_missing_part_file_path() == held_part.scene_file_path
+			and main.assembly.get_missing_part_file_paths().has(held_part.scene_file_path)
 		):
-			main.assembly.add_missing_part()
+			main.assembly.add_missing_part(held_part.scene_file_path)
 			held_part.queue_free()
 		elif Input.is_action_just_pressed("interact"):
 			held_part.queue_free()

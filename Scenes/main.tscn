@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfpcrbb00te2p"]
+[gd_scene load_steps=7 format=3 uid="uid://cfpcrbb00te2p"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_n6l7l"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_va1j2"]
 [ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/chair_leg.tscn" id="3_51hmf"]
+[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/chair_leg_grey.tscn" id="4_7xyn0"]
 
 [sub_resource type="Environment" id="Environment_dwayo"]
 background_mode = 2
@@ -19,7 +20,7 @@ environment = SubResource("Environment_dwayo")
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("parts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("2_va1j2")
-parts = [NodePath("../Parts/Leg")]
+parts = [NodePath("../Parts/Leg"), NodePath("../Parts/LegGrey")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_so5g5")
@@ -65,3 +66,6 @@ omni_range = 16.0
 
 [node name="Leg" parent="Parts" instance=ExtResource("3_51hmf")]
 transform = Transform3D(-3.9616e-08, -0.906308, 0.422618, 1, -4.37114e-08, 0, 1.84732e-08, 0.422618, 0.906308, -4, 1.025, 0)
+
+[node name="LegGrey" parent="Parts" instance=ExtResource("4_7xyn0")]
+transform = Transform3D(-1.13133e-08, -0.258819, 0.965926, 1, -4.37114e-08, 0, 4.2222e-08, 0.965926, 0.258819, 3, 1.025, 0)

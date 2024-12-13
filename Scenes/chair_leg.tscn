@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dyqimxsygmcrv"]
+[gd_scene load_steps=2 format=3 uid="uid://dyqimxsygmcrv"]
+
+[ext_resource type="Material" uid="uid://c421xqws56ym2" path="res://Materials/red.tres" id="1_suews"]
 
 [node name="Leg" type="CSGCylinder3D"]
 radius = 0.025
 height = 0.5
 sides = 16
+material = ExtResource("1_suews")
