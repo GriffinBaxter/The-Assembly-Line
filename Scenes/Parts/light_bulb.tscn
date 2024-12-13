@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dftiob5rum22g"]
+
+[ext_resource type="Material" uid="uid://bofurn8ghchvx" path="res://Materials/grey.tres" id="1_aqr4j"]
+
+[node name="Stem" type="CSGCylinder3D"]
+radius = 0.01
+height = 0.038
+material = ExtResource("1_aqr4j")
+
+[node name="Bulb" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0.0102939, 0)
+radius = 0.018
+
+[node name="Light" type="SpotLight3D" parent="Bulb"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

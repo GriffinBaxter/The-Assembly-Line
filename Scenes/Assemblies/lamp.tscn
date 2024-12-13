@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqekf5eh5c8wy"]
+
+[ext_resource type="PackedScene" uid="uid://dftiob5rum22g" path="res://Scenes/Parts/light_bulb.tscn" id="1_332oc"]
+[ext_resource type="Material" uid="uid://du48tyvnwgyfa" path="res://Materials/black.tres" id="1_qmp4m"]
+[ext_resource type="Script" path="res://Scripts/assembly.gd" id="2_3j6ts"]
+
+[node name="Base" type="CSGCylinder3D" node_paths=PackedStringArray("missing_parts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01036, 0)
+radius = 0.1
+height = 0.02
+sides = 32
+material = ExtResource("1_qmp4m")
+script = ExtResource("2_3j6ts")
+missing_parts = [NodePath("LampShade1/LampShade2/LampShade4/LightBulb")]
+
+[node name="Arm1" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0, 1, -0.015, 0.15, 0)
+radius = 0.015
+height = 0.3
+sides = 16
+material = ExtResource("1_qmp4m")
+
+[node name="Arm2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.673013, 0.739631, 0, -0.739631, 0.673013, 0, 0, 0, 1, 0.081, 0.388, 0)
+radius = 0.015
+height = 0.3
+sides = 16
+material = ExtResource("1_qmp4m")
+
+[node name="LampShade1" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.573576, -0.819152, 0, 0.819152, 0.573576, 0, 0, 0, 1, 0.200107, 0.5, 0)
+radius = 0.03
+height = 0.06
+sides = 16
+material = ExtResource("1_qmp4m")
+
+[node name="LampShade2" type="CSGCylinder3D" parent="LampShade1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.033, 0)
+radius = 0.081
+height = 0.073
+sides = 32
+cone = true
+material = ExtResource("1_qmp4m")
+
+[node name="LampShade3" type="CSGCylinder3D" parent="LampShade1/LampShade2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+operation = 2
+radius = 0.078
+height = 0.04
+sides = 16
+cone = true
+material = ExtResource("1_qmp4m")
+
+[node name="LampShade4" type="CSGCylinder3D" parent="LampShade1/LampShade2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+operation = 2
+radius = 0.01
+height = 0.05
+sides = 16
+material = ExtResource("1_qmp4m")
+
+[node name="LightBulb" parent="LampShade1/LampShade2/LampShade4" instance=ExtResource("1_332oc")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.03, 0)
