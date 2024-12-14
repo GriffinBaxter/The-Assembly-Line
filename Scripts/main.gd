@@ -9,7 +9,7 @@ const SCORE := {"customer_ratings": [], "part_efficiencies": []}
 var current_assemblies: Array[PackedScene]
 var assembly: CSGPrimitive3D
 var rng = RandomNumberGenerator.new()
-var actions := [action_1, action_2, action_3, action_4, action_5, action_6, action_7, action_8]
+var actions := [action_1, action_2, action_3, action_4, action_5]
 var current_action := -1
 var part_attached_scene_file_path := ""
 
@@ -50,11 +50,11 @@ func assembly_line_loop() -> void:
 		)
 		await get_tree().create_timer(15).timeout
 
-		update_tv_with_ratings()
+		update_score_and_tv()
 		get_tree().get_root().remove_child(assembly)
 
 
-func update_tv_with_ratings():
+func update_score_and_tv():
 	if assembly.scene_file_path.contains("chair"):
 		if !assembly.assembled:
 			tv.update_text("★★✰✰✰\n\nMissing a leg, which isn't ideal...")
@@ -240,6 +240,14 @@ func update_score(customer_rating: int, part_efficiency: int) -> void:
 	SCORE.part_efficiencies.append(part_efficiency)
 
 
+func average(array: Array) -> float:
+	return float(array.reduce(sum, 0)) / float(array.size())
+
+
+func sum(accumulator: int, number: int) -> int:
+	return accumulator + number
+
+
 func action_1() -> void:
 	phone.show_phone(
 		(
@@ -252,10 +260,6 @@ func action_1() -> void:
 func action_2() -> void:
 	for i in range(3):
 		await assembly_line_loop()
-	next_action()
-
-
-func action_3() -> void:
 	additional_parts.position += Vector3(0, 9, 0)
 	get_tree().create_tween().tween_property(
 		additional_parts,
@@ -275,17 +279,13 @@ func action_3() -> void:
 	)
 
 
-func action_4() -> void:
+func action_3() -> void:
 	current_assemblies = additional_assemblies
 	for i in range(3):
 		await assembly_line_loop()
 	base_assemblies.append_array(additional_assemblies)
 	current_assemblies = base_assemblies
 	await assembly_line_loop()
-	next_action()
-
-
-func action_5() -> void:
 	phone.show_phone(
 		(
 			"Hey, you might get a bonus if you use cheaper parts!\n\nThe grey table leg "
@@ -294,12 +294,8 @@ func action_5() -> void:
 	)
 
 
-func action_6() -> void:
+func action_4() -> void:
 	await assembly_line_loop()
-	next_action()
-
-
-func action_7() -> void:
 	phone.show_phone(
 		(
 			"The laptop screen is super expensive, try to never use that.\n\n"
@@ -308,6 +304,32 @@ func action_7() -> void:
 	)
 
 
-func action_8() -> void:
-	while true:
+func action_5() -> void:
+	for i in range(4):
 		await assembly_line_loop()
+	var customer_ratings_avg = average(SCORE.customer_ratings)
+	var part_efficiencies_avg = average(SCORE.part_efficiencies)
+	if customer_ratings_avg < 2.5 and part_efficiencies_avg < 2.5:
+		phone.show_phone(
+			"What have you been doing??? Horrible job all round, you're fired.\n\n-Boss"
+		)
+	elif customer_ratings_avg >= 2.5 and part_efficiencies_avg < 2.5:
+		phone.show_phone(
+			(
+				"We're going to have to let you go. The parts we're using are too expensive"
+				+ " ...and we figured a robot could do your job.\n\n-Boss"
+			)
+		)
+	elif customer_ratings_avg < 2.5 and part_efficiencies_avg >= 2.5:
+		phone.show_phone(
+			"Our customers are FURIOUS, and we're getting less sales! You're fired.\n\n-Boss"
+		)
+	else:
+		phone.show_phone(
+			(
+				"Adequate work! As a bonus, we're going to not fire you. That dodgy "
+				+ "co-worker of yours, however, is terminated effective immediately.\n\n-Boss"
+			)
+		)
+		while true:
+			await assembly_line_loop()
