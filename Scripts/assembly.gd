@@ -3,10 +3,10 @@ extends Node3D
 @export var missing_parts: Array[CSGPrimitive3D]
 
 var assembled := false
+var part_attached: String
 
 
 func _ready() -> void:
-	#missing_parts.all(func(part): part.visible = false)
 	for part in missing_parts:
 		part.visible = false
 
@@ -22,5 +22,6 @@ func add_missing_part(part_file_path: String) -> void:
 	for part in missing_parts:
 		if part.scene_file_path == part_file_path:
 			part.visible = true
+			part_attached = part.scene_file_path
 			break
 	assembled = true

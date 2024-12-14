@@ -9,8 +9,10 @@ var assembly: CSGPrimitive3D
 var rng = RandomNumberGenerator.new()
 var actions := [action_1, action_2, action_3, action_4, action_5, action_6, action_7, action_8]
 var current_action := -1
+var part_attached_scene_file_path := ""
 
 @onready var phone: CSGBox3D = $Player/Head/Camera3D/Phone
+@onready var tv: CSGBox3D = $TV
 @onready var additional_parts: Node3D = $Parts/AdditionalParts
 
 
@@ -46,7 +48,141 @@ func assembly_line_loop() -> void:
 		)
 		await get_tree().create_timer(15).timeout
 
+		update_tv_with_ratings()
 		get_tree().get_root().remove_child(assembly)
+
+
+func update_tv_with_ratings():
+	if assembly.scene_file_path.contains("chair"):
+		if !assembly.assembled:
+			tv.update_text("★★✰✰✰\n\nMissing a leg, which isn't ideal...")
+		if assembly.part_attached.contains("leg_red"):
+			tv.update_text("★★★★★\n\nPerfect, I love the red colour!")
+		elif (
+			assembly.part_attached.contains("leg_blue")
+			or assembly.part_attached.contains("leg_grey")
+		):
+			tv.update_text("★★★✰✰\n\nOne of the legs is the wrong colour but that's okay...")
+		elif assembly.part_attached.contains("laptop_screen"):
+			tv.update_text(
+				(
+					"★★✰✰✰\n\nOne of the legs looks to be some sort of screen,"
+					+ " which is sturdy at least..."
+				)
+			)
+		elif assembly.part_attached.contains("candle"):
+			tv.update_text("★✰✰✰✰\n\nOne of the legs is a CANDLE???")
+		elif assembly.part_attached.contains("light_bulb"):
+			tv.update_text("★✰✰✰✰\n\nOne of the legs is a LIGHT BULB???")
+	elif assembly.scene_file_path.contains("table"):
+		if !assembly.assembled:
+			tv.update_text("★★✰✰✰\n\nMissing a leg, which isn't ideal...")
+		if assembly.part_attached.contains("leg_blue"):
+			tv.update_text("★★★★★\n\nPerfect, I love the blue colour!")
+		elif (
+			assembly.part_attached.contains("leg_red")
+			or assembly.part_attached.contains("leg_grey")
+		):
+			tv.update_text("★★★✰✰\n\nOne of the legs is the wrong colour but that's okay...")
+		elif assembly.part_attached.contains("laptop_screen"):
+			tv.update_text(
+				(
+					"★★✰✰✰\n\nOne of the legs looks to be some sort of screen,"
+					+ " which is sturdy at least..."
+				)
+			)
+		elif assembly.part_attached.contains("candle"):
+			tv.update_text("★✰✰✰✰\n\nOne of the legs is a CANDLE???")
+		elif assembly.part_attached.contains("light_bulb"):
+			tv.update_text("★✰✰✰✰\n\nOne of the legs is a LIGHT BULB???")
+	elif assembly.scene_file_path.contains("cake"):
+		if !assembly.assembled:
+			tv.update_text("★★✰✰✰\n\nI thought it was supposed to include a candle?")
+		elif (
+			assembly.part_attached.contains("leg_blue")
+			or assembly.part_attached.contains("leg_red")
+			or assembly.part_attached.contains("leg_grey")
+		):
+			tv.update_text(
+				(
+					"★★✰✰✰\n\nIf I wanted a metal rod inserted into the cake"
+					+ "I would've asked... apart from that it's okay"
+				)
+			)
+		elif assembly.part_attached.contains("laptop_screen"):
+			tv.update_text(
+				(
+					"★★✰✰✰\n\nI'm not sure why a screen was inserted into the cake"
+					+ "but I'll take it I guess..."
+				)
+			)
+		elif assembly.part_attached.contains("candle"):
+			tv.update_text("★★★★★\n\nBeautiful cake, thanks!")
+		elif assembly.part_attached.contains("light_bulb"):
+			tv.update_text(
+				"★★★✰✰\n\nUsing a light bulb instead of a candle was unique to say the least"
+			)
+	elif assembly.scene_file_path.contains("lamp"):
+		if !assembly.assembled:
+			tv.update_text(
+				(
+					'★★✰✰✰\n\n"Light bulb included seperately"'
+					+ " would've been nice to include on the box"
+				)
+			)
+		elif (
+			assembly.part_attached.contains("leg_blue")
+			or assembly.part_attached.contains("leg_red")
+			or assembly.part_attached.contains("leg_grey")
+		):
+			tv.update_text(
+				(
+					"★✰✰✰✰\n\nCertainly a manufacturing defect here, "
+					+ "there's a metal rod protruding out where the light bulb should be..."
+				)
+			)
+		elif assembly.part_attached.contains("laptop_screen"):
+			tv.update_text(
+				"★★✰✰✰\n\nThese new lamps with built-in screens are far too advanced for me"
+			)
+		elif assembly.part_attached.contains("candle"):
+			tv.update_text(
+				'★★★✰✰\n\nI didn\'t think a candle is what they meant by "no batteries included"'
+			)
+		elif assembly.part_attached.contains("light_bulb"):
+			tv.update_text("★★★★★\n\nI love lamp!")
+	elif assembly.scene_file_path.contains("laptop"):
+		if !assembly.assembled:
+			tv.update_text(
+				(
+					'★★✰✰✰\n\n"Screen included seperately"'
+					+ " would've been nice to include on the box"
+				)
+			)
+		elif (
+			assembly.part_attached.contains("leg_blue")
+			or assembly.part_attached.contains("leg_red")
+			or assembly.part_attached.contains("leg_grey")
+		):
+			tv.update_text(
+				(
+					"★✰✰✰✰\n\nCertainly a manufacturing defect here, "
+					+ "there's a metal rod protruding out where the screen should be..."
+				)
+			)
+		elif assembly.part_attached.contains("laptop_screen"):
+			tv.update_text("★★★★★\n\nFantastic laptop, great screen")
+		elif assembly.part_attached.contains("candle"):
+			tv.update_text(
+				"★✰✰✰✰\n\nA bit medieval... why is there is a candle instead of a screen???"
+			)
+		elif assembly.part_attached.contains("light_bulb"):
+			tv.update_text(
+				(
+					"★★✰✰✰\n\nI knew the screen was low resolution,"
+					+ " but I didn't think it would just be a single pixel..."
+				)
+			)
 
 
 func action_1() -> void:

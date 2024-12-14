@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cfpcrbb00te2p"]
+[gd_scene load_steps=19 format=3 uid="uid://cfpcrbb00te2p"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_n6l7l"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_va1j2"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://kb0qnmyplc3n" path="res://Scenes/Parts/candle.tscn" id="10_x1d7j"]
 [ext_resource type="PackedScene" uid="uid://dftiob5rum22g" path="res://Scenes/Parts/light_bulb.tscn" id="11_83r84"]
 [ext_resource type="PackedScene" uid="uid://beroll16q6dja" path="res://Scenes/Parts/laptop_screen.tscn" id="13_114ty"]
+[ext_resource type="PackedScene" uid="uid://gy3fdetee3l2" path="res://Scenes/tv.tscn" id="16_ok3rr"]
 
 [sub_resource type="Environment" id="Environment_dwayo"]
 background_mode = 2
@@ -123,3 +124,6 @@ use_collision = true
 
 [node name="LaptopScreen" parent="Parts/AdditionalParts/LaptopScreenHolder" instance=ExtResource("13_114ty")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.25495, 0)
+
+[node name="TV" parent="." instance=ExtResource("16_ok3rr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -5.48)

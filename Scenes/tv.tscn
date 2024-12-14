@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://gy3fdetee3l2"]
+
+[ext_resource type="Material" uid="uid://bofurn8ghchvx" path="res://Materials/grey.tres" id="1_dlqqm"]
+[ext_resource type="Script" path="res://Scripts/tv.gd" id="1_tck8x"]
+[ext_resource type="Material" uid="uid://du48tyvnwgyfa" path="res://Materials/black.tres" id="2_irkan"]
+
+[node name="Tv" type="CSGBox3D"]
+size = Vector3(0, 0, 0)
+script = ExtResource("1_tck8x")
+
+[node name="ScreenBody" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+size = Vector3(6, 0.05, 3.375)
+material = ExtResource("1_dlqqm")
+
+[node name="Screen" type="CSGBox3D" parent="ScreenBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0190362, -3.94984e-10)
+operation = 2
+size = Vector3(5.85, 0.015, 3.225)
+material = ExtResource("2_irkan")
+
+[node name="TvText" type="Label3D" parent="ScreenBody/Screen"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2.78195, 0.000999931, 1.47087)
+pixel_size = 0.0025
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+font_size = 128
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 3
+width = 2225.0
