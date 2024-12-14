@@ -2,11 +2,12 @@ extends Node3D
 
 @export var base_assemblies: Array[PackedScene]
 @export var additional_assemblies: Array[PackedScene]
+@export var tutorial_debug := false
 
 var current_assemblies: Array[PackedScene]
 var assembly: CSGPrimitive3D
 var rng = RandomNumberGenerator.new()
-var actions := [action_1, action_2, action_3, action_4]
+var actions := [action_1, action_2, action_3, action_4, action_5]
 var current_action := -1
 
 @onready var phone: CSGBox3D = $Player/Head/Camera3D/Phone
@@ -33,18 +34,19 @@ func next_action() -> void:
 
 
 func assembly_line_loop() -> void:
-	var assembly_index = rng.randi_range(0, current_assemblies.size() - 1)
-	assembly = current_assemblies[assembly_index].instantiate()
-	get_tree().get_root().add_child.call_deferred(assembly)
-	await assembly.ready
+	if !tutorial_debug:
+		var assembly_index = rng.randi_range(0, current_assemblies.size() - 1)
+		assembly = current_assemblies[assembly_index].instantiate()
+		get_tree().get_root().add_child.call_deferred(assembly)
+		await assembly.ready
 
-	assembly.position += Vector3(-10, 1.9, -2.5)
-	get_tree().create_tween().tween_property(
-		assembly, "position", Vector3(10, assembly.position.y, -2.5), 15
-	)
-	await get_tree().create_timer(15).timeout
+		assembly.position += Vector3(-10, 1.9, -2.5)
+		get_tree().create_tween().tween_property(
+			assembly, "position", Vector3(10, assembly.position.y, -2.5), 15
+		)
+		await get_tree().create_timer(15).timeout
 
-	get_tree().get_root().remove_child(assembly)
+		get_tree().get_root().remove_child(assembly)
 
 
 func action_1() -> void:
@@ -88,5 +90,33 @@ func action_4() -> void:
 		await assembly_line_loop()
 	base_assemblies.append_array(additional_assemblies)
 	current_assemblies = base_assemblies
+	await assembly_line_loop()
+	next_action()
+
+
+func action_5() -> void:
+	phone.show_phone(
+		(
+			"Hey, you might get a bonus if you use cheaper parts!\n\nThe grey table leg "
+			+ "and the candle are the most inexpensive options...\n\n-Dodgy co-worker"
+		)
+	)
+
+
+func action_6() -> void:
+	await assembly_line_loop()
+	next_action()
+
+
+func action_7() -> void:
+	phone.show_phone(
+		(
+			"The laptop screen is super expensive, try to never use that.\n\n"
+			+ "I wonder what the next best option is?\n\n-Dodgy co-worker"
+		)
+	)
+
+
+func action_8() -> void:
 	while true:
 		await assembly_line_loop()
