@@ -34,10 +34,12 @@ radius = 0.005
 height = 0.075
 
 [node name="Flame" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04785, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.048, 0)
 material_override = SubResource("ShaderMaterial_lg83i")
 amount = 1
 lifetime = 1000.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_qsv36")
 draw_pass_1 = SubResource("QuadMesh_1xx68")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Flame"]

@@ -1,17 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqekf5eh5c8wy"]
+[gd_scene load_steps=9 format=3 uid="uid://dqekf5eh5c8wy"]
 
 [ext_resource type="PackedScene" uid="uid://dftiob5rum22g" path="res://Scenes/Parts/light_bulb.tscn" id="1_332oc"]
 [ext_resource type="Material" uid="uid://du48tyvnwgyfa" path="res://Materials/black.tres" id="1_qmp4m"]
 [ext_resource type="Script" path="res://Scripts/assembly.gd" id="2_3j6ts"]
+[ext_resource type="PackedScene" uid="uid://kb0qnmyplc3n" path="res://Scenes/Parts/candle.tscn" id="3_2iugl"]
+[ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/Parts/leg_blue.tscn" id="5_amd7e"]
+[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/Parts/leg_grey.tscn" id="6_nk3hb"]
+[ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/Parts/leg_red.tscn" id="7_5rnuh"]
+[ext_resource type="PackedScene" uid="uid://beroll16q6dja" path="res://Scenes/Parts/laptop_screen.tscn" id="8_c44ej"]
 
 [node name="Base" type="CSGCylinder3D" node_paths=PackedStringArray("missing_parts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01036, 0)
+use_collision = true
 radius = 0.1
 height = 0.02
 sides = 32
 material = ExtResource("1_qmp4m")
 script = ExtResource("2_3j6ts")
-missing_parts = [NodePath("LampShade1/LampShade2/LampShade4/LightBulb")]
+missing_parts = [NodePath("LampShade1/LampShade2/LightBulb"), NodePath("LampShade1/LampShade2/Candle"), NodePath("LampShade1/LampShade2/LegBlue"), NodePath("LampShade1/LampShade2/LegGrey"), NodePath("LampShade1/LampShade2/LegRed"), NodePath("LampShade1/LampShade2/LaptopScreen")]
 
 [node name="Arm1" type="CSGCylinder3D" parent="."]
 transform = Transform3D(0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0, 1, -0.015, 0.15, 0)
@@ -59,5 +65,26 @@ height = 0.05
 sides = 16
 material = ExtResource("1_qmp4m")
 
-[node name="LightBulb" parent="LampShade1/LampShade2/LampShade4" instance=ExtResource("1_332oc")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.03, 0)
+[node name="LightBulb" parent="LampShade1/LampShade2" instance=ExtResource("1_332oc")]
+transform = Transform3D(1, 0, -3.55271e-15, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.00999999, 0)
+visible = false
+
+[node name="Candle" parent="LampShade1/LampShade2" instance=ExtResource("3_2iugl")]
+transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, -0.00999999, 0)
+visible = false
+
+[node name="LegBlue" parent="LampShade1/LampShade2" instance=ExtResource("5_amd7e")]
+transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, -0.26, 0)
+visible = false
+
+[node name="LegGrey" parent="LampShade1/LampShade2" instance=ExtResource("6_nk3hb")]
+transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, -0.26, 0)
+visible = false
+
+[node name="LegRed" parent="LampShade1/LampShade2" instance=ExtResource("7_5rnuh")]
+transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, -0.26, 0)
+visible = false
+
+[node name="LaptopScreen" parent="LampShade1/LampShade2" instance=ExtResource("8_c44ej")]
+transform = Transform3D(0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 0, 0, 1, 0.0199327, -0.28571, 0)
+visible = false

@@ -101,14 +101,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.25, 0)
 use_collision = true
 
 [node name="Candle" parent="Parts/CandlePartHolder" instance=ExtResource("10_x1d7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.287468, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.433458, 0)
 
 [node name="LightBulbHolder" parent="Parts" instance=ExtResource("4_i8rpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.25, 2)
 use_collision = true
 
 [node name="LightBulb" parent="Parts/LightBulbHolder" instance=ExtResource("11_83r84")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.344794, 0)
 
 [node name="LaptopScreenHolder" parent="Parts" instance=ExtResource("4_i8rpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.25, 4)

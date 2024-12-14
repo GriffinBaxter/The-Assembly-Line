@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnf0okuhwrnym"]
+[gd_scene load_steps=9 format=3 uid="uid://cnf0okuhwrnym"]
 
 [ext_resource type="Material" uid="uid://de3d8uq7dd5e4" path="res://Materials/brown.tres" id="1_llg6p"]
 [ext_resource type="PackedScene" uid="uid://kb0qnmyplc3n" path="res://Scenes/Parts/candle.tscn" id="2_gc3l2"]
 [ext_resource type="Script" path="res://Scripts/assembly.gd" id="2_uhv7a"]
+[ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/Parts/leg_blue.tscn" id="3_vylpw"]
+[ext_resource type="PackedScene" uid="uid://beroll16q6dja" path="res://Scenes/Parts/laptop_screen.tscn" id="4_5qoom"]
+[ext_resource type="PackedScene" uid="uid://dyqimxsygmcrv" path="res://Scenes/Parts/leg_red.tscn" id="4_xhlxc"]
+[ext_resource type="PackedScene" uid="uid://c8omf5ack0qd0" path="res://Scenes/Parts/leg_grey.tscn" id="5_ng24o"]
+[ext_resource type="PackedScene" uid="uid://dftiob5rum22g" path="res://Scenes/Parts/light_bulb.tscn" id="8_ft4bg"]
 
 [node name="Cake" type="CSGCylinder3D" node_paths=PackedStringArray("missing_parts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0752234, 0)
@@ -12,7 +17,7 @@ height = 0.15
 sides = 32
 material = ExtResource("1_llg6p")
 script = ExtResource("2_uhv7a")
-missing_parts = [NodePath("Candle")]
+missing_parts = [NodePath("Candle"), NodePath("LaptopScreen"), NodePath("LegBlue"), NodePath("LegGrey"), NodePath("LegRed"), NodePath("LightBulb")]
 
 [node name="Congratulations" type="Label3D" parent="."]
 transform = Transform3D(0.065, 0, 0, 0, -2.84124e-09, 0.065, 0, -0.065, -2.84124e-09, 0, 0.076, -0.025)
@@ -22,3 +27,24 @@ outline_size = 0
 
 [node name="Candle" parent="." instance=ExtResource("2_gc3l2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.113, 0.035)
+visible = false
+
+[node name="LaptopScreen" parent="." instance=ExtResource("4_5qoom")]
+transform = Transform3D(0.723076, -0.68529, -0.0868241, 0.690763, 0.717809, 0.0871557, 0.00259618, -0.122995, 0.992404, 0.0450012, 0.345619, 0.035)
+visible = false
+
+[node name="LegBlue" parent="." instance=ExtResource("3_vylpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.323973, 0.035)
+visible = false
+
+[node name="LegGrey" parent="." instance=ExtResource("5_ng24o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.323973, 0.035)
+visible = false
+
+[node name="LegRed" parent="." instance=ExtResource("4_xhlxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.323973, 0.035)
+visible = false
+
+[node name="LightBulb" parent="." instance=ExtResource("8_ft4bg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0876844, 0.035)
+visible = false
