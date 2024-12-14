@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfpcrbb00te2p"]
+[gd_scene load_steps=18 format=3 uid="uid://cfpcrbb00te2p"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_n6l7l"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_va1j2"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dqekf5eh5c8wy" path="res://Scenes/Assemblies/lamp.tscn" id="5_3u0nk"]
 [ext_resource type="PackedScene" uid="uid://ol3p2teki25i" path="res://Scenes/Assemblies/laptop.tscn" id="6_7sdf2"]
 [ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/Parts/leg_blue.tscn" id="7_gq6vx"]
+[ext_resource type="PackedScene" uid="uid://c30l1ontd1xyp" path="res://Scenes/phone.tscn" id="8_cessd"]
 [ext_resource type="PackedScene" uid="uid://kb0qnmyplc3n" path="res://Scenes/Parts/candle.tscn" id="10_x1d7j"]
 [ext_resource type="PackedScene" uid="uid://dftiob5rum22g" path="res://Scenes/Parts/light_bulb.tscn" id="11_83r84"]
 [ext_resource type="PackedScene" uid="uid://beroll16q6dja" path="res://Scenes/Parts/laptop_screen.tscn" id="13_114ty"]
@@ -40,6 +41,9 @@ shape = SubResource("CapsuleShape3D_so5g5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
+
+[node name="Phone" parent="Player/Head/Camera3D" instance=ExtResource("8_cessd")]
+transform = Transform3D(0.906479, -0.42198, -0.0151344, 0.0225576, 0.084186, -0.996195, 0.421648, 0.902688, 0.0858317, 0.2, -0.073, -0.2)
 
 [node name="Room" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)

@@ -39,7 +39,8 @@ func _process(_delta: float) -> void:
 
 	if held_part != null:
 		if (
-			held_part.global_position.distance_to(main.assembly.global_position) < 1
+			main.assembly != null
+			and held_part.global_position.distance_to(main.assembly.global_position) < 1
 			and !main.assembly.assembled
 			and main.assembly.get_missing_part_file_paths().has(held_part.scene_file_path)
 		):

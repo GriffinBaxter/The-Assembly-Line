@@ -43,3 +43,4 @@ process_material = SubResource("ParticleProcessMaterial_qsv36")
 draw_pass_1 = SubResource("QuadMesh_1xx68")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Flame"]
+light_color = Color(1, 0.624029, 0.37874, 1)

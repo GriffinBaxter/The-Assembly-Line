@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c30l1ontd1xyp"]
+
+[ext_resource type="Material" uid="uid://bofurn8ghchvx" path="res://Materials/grey.tres" id="1_qaduy"]
+[ext_resource type="Script" path="res://Scripts/phone.gd" id="2_emdye"]
+[ext_resource type="Material" uid="uid://deibprid7jxd6" path="res://Materials/white_unshaded.tres" id="3_exb37"]
+
+[node name="Phone" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
+size = Vector3(0.08, 0.01, 0.165)
+material = ExtResource("1_qaduy")
+script = ExtResource("2_emdye")
+
+[node name="Screen" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
+size = Vector3(0.07, 0.001, 0.155)
+material = ExtResource("3_exb37")
+
+[node name="PhoneText" type="Label3D" parent="Screen"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0287083, 0.001, -0.0697681)
+pixel_size = 0.0001
+modulate = Color(0, 0, 0, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+font_size = 64
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 3
+width = 575.0
