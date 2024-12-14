@@ -24,7 +24,8 @@ tonemap_mode = 2
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_n6l7l")
-assemblies = Array[PackedScene]([ExtResource("2_ve6ix"), ExtResource("3_wv2kn"), ExtResource("4_p1jq4"), ExtResource("5_3u0nk"), ExtResource("6_7sdf2")])
+base_assemblies = Array[PackedScene]([ExtResource("2_ve6ix"), ExtResource("3_wv2kn")])
+additional_assemblies = Array[PackedScene]([ExtResource("6_7sdf2"), ExtResource("5_3u0nk"), ExtResource("4_p1jq4")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dwayo")
@@ -32,7 +33,7 @@ environment = SubResource("Environment_dwayo")
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("parts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("2_va1j2")
-parts = [NodePath("../Parts/LegRedPartHolder/LegRed"), NodePath("../Parts/LegGreyPartHolder/LegGrey"), NodePath("../Parts/LegBluePartHolder/LegBlue"), NodePath("../Parts/CandlePartHolder/Candle"), NodePath("../Parts/LightBulbHolder/LightBulb"), NodePath("../Parts/LaptopScreenHolder/LaptopScreen")]
+parts = [NodePath("../Parts/LegRedPartHolder/LegRed"), NodePath("../Parts/LegGreyPartHolder/LegGrey"), NodePath("../Parts/LegBluePartHolder/LegBlue"), NodePath("../Parts/AdditionalParts/CandlePartHolder/Candle"), NodePath("../Parts/AdditionalParts/LightBulbHolder/LightBulb"), NodePath("../Parts/AdditionalParts/LaptopScreenHolder/LaptopScreen")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_so5g5")
@@ -100,23 +101,25 @@ use_collision = true
 [node name="LegGrey" parent="Parts/LegGreyPartHolder" instance=ExtResource("4_7xyn0")]
 transform = Transform3D(-1.13133e-08, -0.258819, 0.965926, 1, -4.37114e-08, 0, 4.2222e-08, 0.965926, 0.258819, 0, 0.275, 0)
 
-[node name="CandlePartHolder" parent="Parts" instance=ExtResource("4_i8rpd")]
+[node name="AdditionalParts" type="Node3D" parent="Parts"]
+
+[node name="CandlePartHolder" parent="Parts/AdditionalParts" instance=ExtResource("4_i8rpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.25, 0)
 use_collision = true
 
-[node name="Candle" parent="Parts/CandlePartHolder" instance=ExtResource("10_x1d7j")]
+[node name="Candle" parent="Parts/AdditionalParts/CandlePartHolder" instance=ExtResource("10_x1d7j")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.433458, 0)
 
-[node name="LightBulbHolder" parent="Parts" instance=ExtResource("4_i8rpd")]
+[node name="LightBulbHolder" parent="Parts/AdditionalParts" instance=ExtResource("4_i8rpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.25, 2)
 use_collision = true
 
-[node name="LightBulb" parent="Parts/LightBulbHolder" instance=ExtResource("11_83r84")]
+[node name="LightBulb" parent="Parts/AdditionalParts/LightBulbHolder" instance=ExtResource("11_83r84")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.344794, 0)
 
-[node name="LaptopScreenHolder" parent="Parts" instance=ExtResource("4_i8rpd")]
+[node name="LaptopScreenHolder" parent="Parts/AdditionalParts" instance=ExtResource("4_i8rpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.25, 4)
 use_collision = true
 
-[node name="LaptopScreen" parent="Parts/LaptopScreenHolder" instance=ExtResource("13_114ty")]
+[node name="LaptopScreen" parent="Parts/AdditionalParts/LaptopScreenHolder" instance=ExtResource("13_114ty")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.25495, 0)

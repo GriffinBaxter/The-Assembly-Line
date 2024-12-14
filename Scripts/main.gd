@@ -1,17 +1,22 @@
 extends Node3D
 
-@export var assemblies: Array[PackedScene]
+@export var base_assemblies: Array[PackedScene]
+@export var additional_assemblies: Array[PackedScene]
 
+var current_assemblies: Array[PackedScene]
 var assembly: CSGPrimitive3D
 var rng = RandomNumberGenerator.new()
-var actions := [action_1, action_2]
+var actions := [action_1, action_2, action_3, action_4]
 var current_action := -1
 
 @onready var phone: CSGBox3D = $Player/Head/Camera3D/Phone
+@onready var additional_parts: Node3D = $Parts/AdditionalParts
 
 
 func _ready() -> void:
-	phone.phone_hidden.connect(_on_phone_hidden)
+	additional_parts.position -= Vector3(0, 10, 0)
+	current_assemblies = base_assemblies
+	phone.phone_hidden.connect(next_action)
 	phone.show_phone(
 		(
 			"Welcome to the job. You can move with WASD, jump with space, and pick up/drop the "
@@ -21,15 +26,15 @@ func _ready() -> void:
 	)
 
 
-func _on_phone_hidden() -> void:
+func next_action() -> void:
 	current_action += 1
 	if current_action < actions.size():
 		actions[current_action].call()
 
 
 func assembly_line_loop() -> void:
-	var assembly_index = rng.randi_range(0, assemblies.size() - 1)
-	assembly = assemblies[assembly_index].instantiate()
+	var assembly_index = rng.randi_range(0, current_assemblies.size() - 1)
+	assembly = current_assemblies[assembly_index].instantiate()
 	get_tree().get_root().add_child.call_deferred(assembly)
 	await assembly.ready
 
@@ -52,5 +57,36 @@ func action_1() -> void:
 
 
 func action_2() -> void:
+	for i in range(3):
+		await assembly_line_loop()
+	next_action()
+
+
+func action_3() -> void:
+	additional_parts.position += Vector3(0, 9, 0)
+	get_tree().create_tween().tween_property(
+		additional_parts,
+		"position",
+		Vector3(
+			additional_parts.position.x,
+			additional_parts.position.y + 1,
+			additional_parts.position.z
+		),
+		1
+	)
+	phone.show_phone(
+		(
+			"FYI: we're not just making furniture anymore, we're expanding our lineup.\n\n"
+			+ "Look to your right to find the new parts.\n\n-Boss"
+		)
+	)
+
+
+func action_4() -> void:
+	current_assemblies = additional_assemblies
+	for i in range(3):
+		await assembly_line_loop()
+	base_assemblies.append_array(additional_assemblies)
+	current_assemblies = base_assemblies
 	while true:
 		await assembly_line_loop()
