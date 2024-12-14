@@ -7,7 +7,7 @@ extends Node3D
 var current_assemblies: Array[PackedScene]
 var assembly: CSGPrimitive3D
 var rng = RandomNumberGenerator.new()
-var actions := [action_1, action_2, action_3, action_4, action_5]
+var actions := [action_1, action_2, action_3, action_4, action_5, action_6, action_7, action_8]
 var current_action := -1
 
 @onready var phone: CSGBox3D = $Player/Head/Camera3D/Phone
