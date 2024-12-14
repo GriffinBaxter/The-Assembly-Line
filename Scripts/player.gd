@@ -58,7 +58,7 @@ func _process(_delta: float) -> void:
 				min_distance = distance_to_part
 		if min_part:
 			held_part = min_part.duplicate()
-			held_part.rotation = Vector3(0, 0, 0)
+			held_part.rotation = Vector3.ZERO
 			held_part.position = Vector3(0, -0.5, -1.5)
 			camera_3d.add_child(held_part)
 

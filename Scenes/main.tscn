@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfpcrbb00te2p"]
+[gd_scene load_steps=17 format=3 uid="uid://cfpcrbb00te2p"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_n6l7l"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_va1j2"]
@@ -9,9 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://dihw1hvm3pehm" path="res://Scenes/part_holder.tscn" id="4_i8rpd"]
 [ext_resource type="PackedScene" uid="uid://cnf0okuhwrnym" path="res://Scenes/Assemblies/cake.tscn" id="4_p1jq4"]
 [ext_resource type="PackedScene" uid="uid://dqekf5eh5c8wy" path="res://Scenes/Assemblies/lamp.tscn" id="5_3u0nk"]
+[ext_resource type="PackedScene" uid="uid://ol3p2teki25i" path="res://Scenes/Assemblies/laptop.tscn" id="6_7sdf2"]
 [ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/Parts/leg_blue.tscn" id="7_gq6vx"]
 [ext_resource type="PackedScene" uid="uid://kb0qnmyplc3n" path="res://Scenes/Parts/candle.tscn" id="10_x1d7j"]
 [ext_resource type="PackedScene" uid="uid://dftiob5rum22g" path="res://Scenes/Parts/light_bulb.tscn" id="11_83r84"]
+[ext_resource type="PackedScene" uid="uid://beroll16q6dja" path="res://Scenes/Parts/laptop_screen.tscn" id="13_114ty"]
 
 [sub_resource type="Environment" id="Environment_dwayo"]
 background_mode = 2
@@ -21,7 +23,7 @@ tonemap_mode = 2
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_n6l7l")
-assemblies = Array[PackedScene]([ExtResource("2_ve6ix"), ExtResource("3_wv2kn"), ExtResource("4_p1jq4"), ExtResource("5_3u0nk")])
+assemblies = Array[PackedScene]([ExtResource("2_ve6ix"), ExtResource("3_wv2kn"), ExtResource("4_p1jq4"), ExtResource("5_3u0nk"), ExtResource("6_7sdf2")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dwayo")
@@ -29,7 +31,7 @@ environment = SubResource("Environment_dwayo")
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("parts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("2_va1j2")
-parts = [NodePath("../Parts/LegRedPartHolder/LegRed"), NodePath("../Parts/LegGreyPartHolder/LegGrey"), NodePath("../Parts/LegBluePartHolder/LegBlue"), NodePath("../Parts/CandlePartHolder/Candle"), NodePath("../Parts/LightBulbHolder/LightBulb")]
+parts = [NodePath("../Parts/LegRedPartHolder/LegRed"), NodePath("../Parts/LegGreyPartHolder/LegGrey"), NodePath("../Parts/LegBluePartHolder/LegBlue"), NodePath("../Parts/CandlePartHolder/Candle"), NodePath("../Parts/LightBulbHolder/LightBulb"), NodePath("../Parts/LaptopScreenHolder/LaptopScreen")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_so5g5")
@@ -107,3 +109,10 @@ use_collision = true
 
 [node name="LightBulb" parent="Parts/LightBulbHolder" instance=ExtResource("11_83r84")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27, 0)
+
+[node name="LaptopScreenHolder" parent="Parts" instance=ExtResource("4_i8rpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.25, 4)
+use_collision = true
+
+[node name="LaptopScreen" parent="Parts/LaptopScreenHolder" instance=ExtResource("13_114ty")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.25495, 0)

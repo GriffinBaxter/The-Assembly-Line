@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://beroll16q6dja"]
+
+[ext_resource type="Material" uid="uid://bofurn8ghchvx" path="res://Materials/grey.tres" id="1_363rl"]
+
+[node name="LaptopScreen" type="CSGBox3D"]
+size = Vector3(0, 0, 0)
+
+[node name="ScreenBody" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+size = Vector3(0.5, 0.01, 0.375)
+material = ExtResource("1_363rl")
+
+[node name="Screen" type="CSGBox3D" parent="ScreenBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00510913, 0.0172167)
+operation = 2
+size = Vector3(0.45, 0.01, 0.3)

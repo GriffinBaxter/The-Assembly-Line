@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ol3p2teki25i"]
+
+[ext_resource type="PackedScene" uid="uid://beroll16q6dja" path="res://Scenes/Parts/laptop_screen.tscn" id="1_qdobu"]
+[ext_resource type="Material" uid="uid://bofurn8ghchvx" path="res://Materials/grey.tres" id="1_x2cib"]
+[ext_resource type="Script" path="res://Scripts/assembly.gd" id="2_2e8h2"]
+[ext_resource type="Material" uid="uid://du48tyvnwgyfa" path="res://Materials/black.tres" id="3_aryy6"]
+
+[node name="Laptop" type="CSGBox3D" node_paths=PackedStringArray("missing_parts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
+size = Vector3(0.5, 0.01, 0.375)
+material = ExtResource("1_x2cib")
+script = ExtResource("2_2e8h2")
+missing_parts = [NodePath("LaptopScreen")]
+
+[node name="Trackpad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, 0.129)
+operation = 2
+size = Vector3(0.175, 0.003, 0.1)
+material = ExtResource("1_x2cib")
+
+[node name="Keyboard" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, -0.0473175)
+operation = 2
+size = Vector3(0.45, 0.003, 0.225)
+material = ExtResource("3_aryy6")
+
+[node name="LaptopScreen" parent="." instance=ExtResource("1_qdobu")]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.18094, -0.215643)
