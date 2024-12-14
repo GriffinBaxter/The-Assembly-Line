@@ -64,7 +64,7 @@ func _process(_delta: float) -> void:
 			camera_3d.add_child(held_part)
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x as float * SENSITIVITY)
 		camera_3d.rotate_x(-event.relative.y as float * SENSITIVITY)

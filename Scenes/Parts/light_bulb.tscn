@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dftiob5rum22g"]
+[gd_scene load_steps=3 format=3 uid="uid://dftiob5rum22g"]
 
 [ext_resource type="Material" uid="uid://bofurn8ghchvx" path="res://Materials/grey.tres" id="1_aqr4j"]
+[ext_resource type="Material" uid="uid://deibprid7jxd6" path="res://Materials/white_unshaded.tres" id="2_7j103"]
 
 [node name="Stem" type="CSGCylinder3D"]
 radius = 0.01
@@ -10,6 +11,13 @@ material = ExtResource("1_aqr4j")
 [node name="Bulb" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0.0102939, 0)
 radius = 0.018
+radial_segments = 24
+rings = 12
+material = ExtResource("2_7j103")
 
-[node name="Light" type="SpotLight3D" parent="Bulb"]
+[node name="Light" type="OmniLight3D" parent="Bulb"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+light_energy = 0.1
+shadow_enabled = true
+omni_range = 1.1
+omni_attenuation = 2.0

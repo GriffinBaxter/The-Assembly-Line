@@ -1,6 +1,7 @@
 extends Node3D
 
-const SCORE := {"customer_ratings": [], "part_efficiencies": []}
+const SCORE := {"customer_ratings": [4], "part_efficiencies": [1]}
+const MAIN = preload("res://Scenes/main.tscn")
 
 @export var base_assemblies: Array[PackedScene]
 @export var additional_assemblies: Array[PackedScene]
@@ -9,13 +10,19 @@ const SCORE := {"customer_ratings": [], "part_efficiencies": []}
 var current_assemblies: Array[PackedScene]
 var assembly: CSGPrimitive3D
 var rng = RandomNumberGenerator.new()
-var actions := [action_1, action_2, action_3, action_4, action_5]
+var actions := [action_1, action_2, action_3, action_4, action_5, action_6]
 var current_action := -1
 var part_attached_scene_file_path := ""
+var customer_ratings_avg: float
+var part_efficiencies_avg: float
 
 @onready var phone: CSGBox3D = $Player/Head/Camera3D/Phone
 @onready var tv: CSGBox3D = $TV
 @onready var additional_parts: Node3D = $Parts/AdditionalParts
+@onready var exit: CSGBox3D = $Room/Exit
+@onready var exit_light: OmniLight3D = $Room/Exit/ExitLight
+@onready var fade_in_out: Control = $FadeInOut
+@onready var colour_rect: ColorRect = $FadeInOut/ColourRect
 
 
 func _ready() -> void:
@@ -29,6 +36,14 @@ func _ready() -> void:
 			+ '\n\n(P.S. Press "Enter" to close this message)'
 		)
 	)
+
+
+func _on_room_area_body_exited(body: Node3D) -> void:
+	if body.name == "Player":
+		fade_in_out.visible = true
+		get_tree().create_tween().tween_property(colour_rect, "color", Color(0, 0, 0, 1), 3.5)
+		await get_tree().create_timer(3.5).timeout
+		get_tree().change_scene_to_packed(MAIN)
 
 
 func next_action() -> void:
@@ -307,8 +322,8 @@ func action_4() -> void:
 func action_5() -> void:
 	for i in range(4):
 		await assembly_line_loop()
-	var customer_ratings_avg = average(SCORE.customer_ratings)
-	var part_efficiencies_avg = average(SCORE.part_efficiencies)
+	customer_ratings_avg = average(SCORE.customer_ratings)
+	part_efficiencies_avg = average(SCORE.part_efficiencies)
 	if customer_ratings_avg < 2.5 and part_efficiencies_avg < 2.5:
 		phone.show_phone(
 			"What have you been doing??? Horrible job all round, you're fired.\n\n-Boss"
@@ -317,7 +332,7 @@ func action_5() -> void:
 		phone.show_phone(
 			(
 				"We're going to have to let you go. The parts we're using are too expensive"
-				+ " ...and we figured a robot could do your job.\n\n-Boss"
+				+ "\n\n...and we figured a robot could do your job cheaper.\n\n-Boss"
 			)
 		)
 	elif customer_ratings_avg < 2.5 and part_efficiencies_avg >= 2.5:
@@ -327,9 +342,18 @@ func action_5() -> void:
 	else:
 		phone.show_phone(
 			(
-				"Adequate work! As a bonus, we're going to not fire you. That dodgy "
+				"Adequate work! As a bonus, we're going to not fire you.\n\nThat dodgy "
 				+ "co-worker of yours, however, is terminated effective immediately.\n\n-Boss"
 			)
 		)
-		while true:
+
+
+func action_6() -> void:
+	if customer_ratings_avg >= 2.5 and part_efficiencies_avg >= 2.5:
+		for i in range(1000):
 			await assembly_line_loop()
+	exit.position = Vector3(0, -4.75, 6)
+	exit_light.light_energy = 0
+	get_tree().create_tween().tween_property(exit, "position", Vector3(0, -2.25, 6), 1.5)
+	get_tree().create_tween().tween_property(exit_light, "light_energy", 1, 1.5)
+	exit.visible = true
