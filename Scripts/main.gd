@@ -27,6 +27,7 @@ var paused := false
 @onready var colour_rect: ColorRect = $FadeInOut/ColourRect
 @onready var pause_menu: Control = $PauseMenu
 @onready var assembly_line: CSGBox3D = $Room/AssemblyLine
+@onready var ending_text: RichTextLabel = $FadeInOut/EndingText
 
 
 func _ready() -> void:
@@ -68,6 +69,7 @@ func _on_room_area_body_exited(body: Node3D) -> void:
 	if body.name == "Player":
 		fade_in_out.visible = true
 		get_tree().create_tween().tween_property(colour_rect, "color", Color(0, 0, 0, 1), 3.5)
+		get_tree().create_tween().tween_property(ending_text, "modulate", Color(1, 1, 1, 1), 3.5)
 		await get_tree().create_timer(3.5).timeout
 		get_tree().change_scene_to_packed(main_menu)
 
@@ -366,6 +368,7 @@ func action_5() -> void:
 		phone.show_phone(
 			"What have you been doing??? Horrible job all round, you're fired.\n\n-Boss"
 		)
+		ending_text.text = "Ending 1 / 5"
 	elif customer_ratings_avg >= 2.5 and part_efficiencies_avg < 2.5:
 		phone.show_phone(
 			(
@@ -373,10 +376,12 @@ func action_5() -> void:
 				+ "\n\n...and we figured a robot could do your job cheaper.\n\n-Boss"
 			)
 		)
+		ending_text.text = "Ending 2 / 5"
 	elif customer_ratings_avg < 2.5 and part_efficiencies_avg >= 2.5:
 		phone.show_phone(
 			"Our customers are FURIOUS, and we're getting less sales! You're fired.\n\n-Boss"
 		)
+		ending_text.text = "Ending 3 / 5"
 	else:
 		phone.show_phone(
 			(
@@ -384,6 +389,7 @@ func action_5() -> void:
 				+ "co-worker of yours, however, is terminated effective immediately.\n\n-Boss"
 			)
 		)
+		ending_text.text = "Ending 4 / 5"
 
 
 func action_6() -> void:
