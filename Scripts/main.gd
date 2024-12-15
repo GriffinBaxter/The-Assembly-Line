@@ -28,6 +28,7 @@ var paused := false
 @onready var pause_menu: Control = $PauseMenu
 @onready var assembly_line: CSGBox3D = $Room/AssemblyLine
 @onready var ending_text: RichTextLabel = $FadeInOut/EndingText
+@onready var ending: AudioStreamPlayer = $Ending
 
 
 func _ready() -> void:
@@ -70,6 +71,7 @@ func _on_room_area_body_exited(body: Node3D) -> void:
 		fade_in_out.visible = true
 		get_tree().create_tween().tween_property(colour_rect, "color", Color(0, 0, 0, 1), 3.5)
 		get_tree().create_tween().tween_property(ending_text, "modulate", Color(1, 1, 1, 1), 3.5)
+		ending.play()
 		await get_tree().create_timer(3.5).timeout
 		get_tree().change_scene_to_packed(main_menu)
 

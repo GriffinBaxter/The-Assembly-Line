@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cfpcrbb00te2p"]
+[gd_scene load_steps=24 format=3 uid="uid://cfpcrbb00te2p"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_n6l7l"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_va1j2"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://beroll16q6dja" path="res://Scenes/Parts/laptop_screen.tscn" id="13_114ty"]
 [ext_resource type="PackedScene" uid="uid://gy3fdetee3l2" path="res://Scenes/tv.tscn" id="16_ok3rr"]
 [ext_resource type="PackedScene" uid="uid://cqa0w3ufjs1nt" path="res://Scenes/pause_menu.tscn" id="17_3kc3m"]
+[ext_resource type="AudioStream" uid="uid://craxwx232igb5" path="res://Sounds/ending.wav" id="19_u1mpt"]
+[ext_resource type="AudioStream" uid="uid://cjff3ymti63wr" path="res://Sounds/part.wav" id="20_bwbd6"]
 
 [sub_resource type="Environment" id="Environment_dwayo"]
 background_mode = 2
@@ -190,5 +192,12 @@ fit_content = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("17_3kc3m")]
 visible = false
+
+[node name="Ending" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_u1mpt")
+
+[node name="PartAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_bwbd6")
+volume_db = -10.0
 
 [connection signal="body_exited" from="Room/RoomArea" to="." method="_on_room_area_body_exited"]

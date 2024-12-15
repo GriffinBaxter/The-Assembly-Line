@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://tqso3rfes5fg"]
+[gd_scene load_steps=3 format=3 uid="uid://tqso3rfes5fg"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_13tpt"]
+[ext_resource type="AudioStream" uid="uid://culs8s76iyoxi" path="res://Sounds/main_menu.wav" id="2_hu752"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -77,6 +78,12 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 57
 text = "(FOR THE 2024 GMTK PATREON JAM)"
 fit_content = true
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hu752")
+volume_db = 5.0
+pitch_scale = 1.5
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]

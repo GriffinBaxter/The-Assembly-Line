@@ -11,6 +11,7 @@ var held_part: CSGPrimitive3D
 @onready var head: Node3D = $Head
 @onready var camera_3d: Camera3D = $Head/Camera3D
 @onready var main: Node3D = $".."
+@onready var part_audio: AudioStreamPlayer = $"../PartAudio"
 
 
 func _ready() -> void:
@@ -46,8 +47,10 @@ func _process(_delta: float) -> void:
 		):
 			main.assembly.add_missing_part(held_part.scene_file_path)
 			held_part.queue_free()
+			part_audio.play()
 		elif Input.is_action_just_pressed("interact"):
 			held_part.queue_free()
+			part_audio.play()
 
 	if Input.is_action_just_pressed("interact") and held_part == null:
 		var min_part
@@ -62,6 +65,7 @@ func _process(_delta: float) -> void:
 			held_part.rotation = Vector3.ZERO
 			held_part.position = Vector3(0, -0.5, -1.5)
 			camera_3d.add_child(held_part)
+			part_audio.play()
 
 	if Input.is_action_just_pressed("pause"):
 		main.pause_menu_toggled()

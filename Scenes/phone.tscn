@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c30l1ontd1xyp"]
+[gd_scene load_steps=5 format=3 uid="uid://c30l1ontd1xyp"]
 
 [ext_resource type="Material" uid="uid://bofurn8ghchvx" path="res://Materials/grey.tres" id="1_qaduy"]
 [ext_resource type="Script" path="res://Scripts/phone.gd" id="2_emdye"]
 [ext_resource type="Material" uid="uid://deibprid7jxd6" path="res://Materials/white_unshaded.tres" id="3_exb37"]
+[ext_resource type="AudioStream" uid="uid://ytrthb1ttrc" path="res://Sounds/phone_text.wav" id="4_6ed1v"]
 
 [node name="Phone" type="CSGBox3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
@@ -26,3 +27,7 @@ horizontal_alignment = 0
 vertical_alignment = 0
 autowrap_mode = 3
 width = 575.0
+
+[node name="PhoneTextAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6ed1v")
+volume_db = -15.0

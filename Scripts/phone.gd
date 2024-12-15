@@ -6,6 +6,7 @@ var phone_visible := false
 var phone_moving := false
 
 @onready var phone_text: Label3D = $Screen/PhoneText
+@onready var phone_text_audio: AudioStreamPlayer = $PhoneTextAudio
 
 
 func _ready() -> void:
@@ -20,6 +21,7 @@ func _input(event: InputEvent) -> void:
 func show_phone(text: String) -> void:
 	phone_text.text = text
 	phone_moving = true
+	phone_text_audio.play()
 	get_tree().create_tween().tween_property(self, "position", position + Vector3(0, .2, 0), .5)
 	await get_tree().create_timer(.5).timeout
 
