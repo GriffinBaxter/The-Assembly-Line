@@ -2,20 +2,27 @@ extends CharacterBody3D
 
 const SPEED := 5.0
 const JUMP_VELOCITY := 4.5
-const SENSITIVITY := 0.002
+const SENSITIVITY := 0.00004
 
 @export var parts: Array[CSGPrimitive3D]
 
 var held_part: CSGPrimitive3D
+var sensitivity_multiplier := 50
 
 @onready var head: Node3D = $Head
 @onready var camera_3d: Camera3D = $Head/Camera3D
 @onready var main: Node3D = $".."
 @onready var part_audio: AudioStreamPlayer = $"../PartAudio"
+@onready var pause_menu: Control = $"../PauseMenu"
 
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pause_menu.mouse_sensitivity.connect(update_mouse_sensitivity)
+
+
+func update_mouse_sensitivity(value: int) -> void:
+	sensitivity_multiplier = value
 
 
 func _physics_process(delta: float) -> void:
@@ -73,6 +80,6 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and !main.paused:
-		head.rotate_y(-event.relative.x as float * SENSITIVITY)
-		camera_3d.rotate_x(-event.relative.y as float * SENSITIVITY)
+		head.rotate_y(-event.relative.x as float * SENSITIVITY * sensitivity_multiplier)
+		camera_3d.rotate_x(-event.relative.y as float * SENSITIVITY * sensitivity_multiplier)
 		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-60), deg_to_rad(60))
