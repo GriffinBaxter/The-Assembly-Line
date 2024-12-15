@@ -30,6 +30,7 @@ size = Vector3(19, 9, 13)
 script = ExtResource("1_n6l7l")
 base_assemblies = Array[PackedScene]([ExtResource("2_ve6ix"), ExtResource("3_wv2kn")])
 additional_assemblies = Array[PackedScene]([ExtResource("6_7sdf2"), ExtResource("5_3u0nk"), ExtResource("4_p1jq4")])
+tutorial_debug = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dwayo")

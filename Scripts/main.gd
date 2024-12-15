@@ -1,7 +1,6 @@
 extends Node3D
 
 const SCORE := {"customer_ratings": [4], "part_efficiencies": [1]}
-const MAIN_MENU = preload("res://Scenes/main_menu.tscn")
 
 @export var base_assemblies: Array[PackedScene]
 @export var additional_assemblies: Array[PackedScene]
@@ -15,6 +14,7 @@ var current_action := -1
 var part_attached_scene_file_path := ""
 var customer_ratings_avg: float
 var part_efficiencies_avg: float
+var main_menu := load("res://Scenes/main_menu.tscn")
 
 @onready var phone: CSGBox3D = $Player/Head/Camera3D/Phone
 @onready var tv: CSGBox3D = $TV
@@ -43,7 +43,7 @@ func _on_room_area_body_exited(body: Node3D) -> void:
 		fade_in_out.visible = true
 		get_tree().create_tween().tween_property(colour_rect, "color", Color(0, 0, 0, 1), 3.5)
 		await get_tree().create_timer(3.5).timeout
-		get_tree().change_scene_to_packed(MAIN_MENU)
+		get_tree().change_scene_to_packed(main_menu)
 
 
 func next_action() -> void:
