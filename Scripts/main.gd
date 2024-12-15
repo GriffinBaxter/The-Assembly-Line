@@ -114,61 +114,61 @@ func assembly_line_loop() -> void:
 func update_score_and_tv():
 	if assembly.scene_file_path.contains("chair"):
 		if !assembly.assembled:
-			tv.update_text("2/5\n\nMissing a leg, which isn't ideal...")
+			tv.update_text("Rating: 2/5\n\nMissing a leg, which isn't ideal...")
 			update_score(2, 5)
 		elif assembly.part_attached.contains("leg_red"):
-			tv.update_text("5/5\n\nPerfect, I love the red colour!")
+			tv.update_text("Rating: 5/5\n\nPerfect, I love the red colour!")
 			update_score(5, 2)
 		elif assembly.part_attached.contains("leg_blue"):
-			tv.update_text("3/5\n\nOne of the legs is the wrong colour but that's okay...")
+			tv.update_text("Rating: 3/5\n\nOne of the legs is the wrong colour but that's okay...")
 			update_score(3, 2)
 		elif assembly.part_attached.contains("leg_grey"):
-			tv.update_text("3/5\n\nOne of the legs was not painted but that's okay...")
+			tv.update_text("Rating: 3/5\n\nOne of the legs was not painted but that's okay...")
 			update_score(3, 4)
 		elif assembly.part_attached.contains("laptop_screen"):
 			tv.update_text(
 				(
-					"2/5\n\nOne of the legs looks to be some sort of screen,"
+					"Rating: 2/5\n\nOne of the legs looks to be some sort of screen,"
 					+ " which is sturdy at least..."
 				)
 			)
 			update_score(2, 1)
 		elif assembly.part_attached.contains("candle"):
-			tv.update_text("1/5\n\nOne of the legs is a CANDLE???")
+			tv.update_text("Rating: 1/5\n\nOne of the legs is a CANDLE???")
 			update_score(1, 4)
 		elif assembly.part_attached.contains("light_bulb"):
-			tv.update_text("1/5\n\nOne of the legs is a LIGHT BULB???")
+			tv.update_text("Rating: 1/5\n\nOne of the legs is a LIGHT BULB???")
 			update_score(1, 3)
 	elif assembly.scene_file_path.contains("table"):
 		if !assembly.assembled:
-			tv.update_text("2/5\n\nMissing a leg, which isn't ideal...")
+			tv.update_text("Rating: 2/5\n\nMissing a leg, which isn't ideal...")
 			update_score(2, 5)
 		elif assembly.part_attached.contains("leg_blue"):
-			tv.update_text("5/5\n\nPerfect, I love the blue colour!")
+			tv.update_text("Rating: 5/5\n\nPerfect, I love the blue colour!")
 			update_score(5, 2)
 		elif assembly.part_attached.contains("leg_red"):
-			tv.update_text("3/5\n\nOne of the legs is the wrong colour but that's okay...")
+			tv.update_text("Rating: 3/5\n\nOne of the legs is the wrong colour but that's okay...")
 			update_score(3, 2)
 		elif assembly.part_attached.contains("leg_grey"):
-			tv.update_text("3/5\n\nOne of the legs was not painted but that's okay...")
+			tv.update_text("Rating: 3/5\n\nOne of the legs was not painted but that's okay...")
 			update_score(3, 4)
 		elif assembly.part_attached.contains("laptop_screen"):
 			tv.update_text(
 				(
-					"2/5\n\nOne of the legs looks to be some sort of screen,"
+					"Rating: 2/5\n\nOne of the legs looks to be some sort of screen,"
 					+ " which is sturdy at least..."
 				)
 			)
 			update_score(2, 1)
 		elif assembly.part_attached.contains("candle"):
-			tv.update_text("1/5\n\nOne of the legs is a CANDLE???")
+			tv.update_text("Rating: 1/5\n\nOne of the legs is a CANDLE???")
 			update_score(1, 4)
 		elif assembly.part_attached.contains("light_bulb"):
-			tv.update_text("1/5\n\nOne of the legs is a LIGHT BULB???")
+			tv.update_text("Rating: 1/5\n\nOne of the legs is a LIGHT BULB???")
 			update_score(1, 3)
 	elif assembly.scene_file_path.contains("cake"):
 		if !assembly.assembled:
-			tv.update_text("1/5\n\nI thought it was supposed to include a candle?")
+			tv.update_text("Rating: 1/5\n\nI thought it was supposed to include a candle?")
 			update_score(2, 5)
 		elif (
 			assembly.part_attached.contains("leg_blue")
@@ -176,7 +176,7 @@ func update_score_and_tv():
 		):
 			tv.update_text(
 				(
-					"2/5\n\nIf I wanted a metal rod inserted into the cake"
+					"Rating: 2/5\n\nIf I wanted a metal rod inserted into the cake"
 					+ " I would've asked... apart from that it's okay"
 				)
 			)
@@ -184,7 +184,7 @@ func update_score_and_tv():
 		elif assembly.part_attached.contains("leg_grey"):
 			tv.update_text(
 				(
-					"2/5\n\nIf I wanted a metal rod inserted into the cake"
+					"Rating: 2/5\n\nIf I wanted a metal rod inserted into the cake"
 					+ " I would've asked... apart from that it's okay"
 				)
 			)
@@ -192,24 +192,24 @@ func update_score_and_tv():
 		elif assembly.part_attached.contains("laptop_screen"):
 			tv.update_text(
 				(
-					"2/5\n\nI'm not sure why a screen was inserted into the cake"
+					"Rating: 2/5\n\nI'm not sure why a screen was inserted into the cake"
 					+ "but I'll take it I guess..."
 				)
 			)
 			update_score(2, 1)
 		elif assembly.part_attached.contains("candle"):
-			tv.update_text("5/5\n\nBeautiful cake, thanks!")
+			tv.update_text("Rating: 5/5\n\nBeautiful cake, thanks!")
 			update_score(5, 4)
 		elif assembly.part_attached.contains("light_bulb"):
 			tv.update_text(
-				"3/5\n\nUsing a light bulb instead of a candle was unique to say the least"
+				"Rating: 3/5\n\nUsing a light bulb instead of a candle was unique to say the least"
 			)
 			update_score(3, 3)
 	elif assembly.scene_file_path.contains("lamp"):
 		if !assembly.assembled:
 			tv.update_text(
 				(
-					'2/5\n\n"Light bulb included seperately"'
+					'Rating: 2/5\n\n"Light bulb included seperately"'
 					+ " would've been nice to include on the box"
 				)
 			)
@@ -220,7 +220,7 @@ func update_score_and_tv():
 		):
 			tv.update_text(
 				(
-					"1/5\n\nCertainly a manufacturing defect here, "
+					"Rating: 1/5\n\nCertainly a manufacturing defect here, "
 					+ "there's a metal rod protruding out where the light bulb should be..."
 				)
 			)
@@ -228,19 +228,22 @@ func update_score_and_tv():
 		elif assembly.part_attached.contains("leg_grey"):
 			tv.update_text(
 				(
-					"1/5\n\nCertainly a manufacturing defect here, "
+					"Rating: 1/5\n\nCertainly a manufacturing defect here, "
 					+ "there's a metal rod protruding out where the light bulb should be..."
 				)
 			)
 			update_score(1, 4)
 		elif assembly.part_attached.contains("laptop_screen"):
 			tv.update_text(
-				"2/5\n\nThese new lamps with built-in screens are far too advanced for me"
+				"Rating: 2/5\n\nThese new lamps with built-in screens are far too advanced for me"
 			)
 			update_score(2, 1)
 		elif assembly.part_attached.contains("candle"):
-			tv.update_text(
-				'3/5\n\nI didn\'t think a candle is what they meant by "no batteries included"'
+			(
+				tv
+				. update_text(
+					'Rating: 3/5\n\nI didn\'t think a candle is what they meant by "no batteries included"'
+				)
 			)
 			update_score(3, 4)
 		elif assembly.part_attached.contains("light_bulb"):
@@ -249,7 +252,10 @@ func update_score_and_tv():
 	elif assembly.scene_file_path.contains("laptop"):
 		if !assembly.assembled:
 			tv.update_text(
-				'2/5\n\n"Screen included seperately"' + " would've been nice to include on the box"
+				(
+					'Rating: 2/5\n\n"Screen included seperately"'
+					+ " would've been nice to include on the box"
+				)
 			)
 			update_score(2, 5)
 		elif (
@@ -258,7 +264,7 @@ func update_score_and_tv():
 		):
 			tv.update_text(
 				(
-					"1/5\n\nCertainly a manufacturing defect here, "
+					"Rating: 1/5\n\nCertainly a manufacturing defect here, "
 					+ "there's a metal rod protruding out where the screen should be..."
 				)
 			)
@@ -266,23 +272,23 @@ func update_score_and_tv():
 		elif assembly.part_attached.contains("leg_grey"):
 			tv.update_text(
 				(
-					"1/5\n\nCertainly a manufacturing defect here, "
+					"Rating: 1/5\n\nCertainly a manufacturing defect here, "
 					+ "there's a metal rod protruding out where the screen should be..."
 				)
 			)
 			update_score(1, 4)
 		elif assembly.part_attached.contains("laptop_screen"):
-			tv.update_text("5/5\n\nFantastic laptop, great screen")
+			tv.update_text("Rating: 5/5\n\nFantastic laptop, great screen")
 			update_score(5, 2)
 		elif assembly.part_attached.contains("candle"):
 			tv.update_text(
-				"1/5\n\nA bit medieval... why is there is a candle instead of a screen???"
+				"Rating: 1/5\n\nA bit medieval... why is there is a candle instead of a screen???"
 			)
 			update_score(1, 4)
 		elif assembly.part_attached.contains("light_bulb"):
 			tv.update_text(
 				(
-					"2/5\n\nI knew the screen was low resolution,"
+					"Rating: 2/5\n\nI knew the screen was low resolution,"
 					+ " but I didn't think it would just be a single pixel..."
 				)
 			)

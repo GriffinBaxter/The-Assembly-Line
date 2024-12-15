@@ -48,17 +48,6 @@ theme_override_constants/line_separation = 40
 theme_override_font_sizes/normal_font_size = 104
 fit_content = true
 
-[node name="Fullscreen" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 76
-text = "Toggle Fullscreen"
-
-[node name="Spacer2" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/line_separation = 40
-theme_override_font_sizes/normal_font_size = 104
-fit_content = true
-
 [node name="Title" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 75
@@ -71,5 +60,4 @@ min_value = 1.0
 value = 50.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeGame" to="." method="_on_resume_game_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MouseSensitivity" to="." method="_on_mouse_sensitivity_value_changed"]
