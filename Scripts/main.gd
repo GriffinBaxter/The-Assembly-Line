@@ -1,7 +1,7 @@
 extends Node3D
 
 const SCORE := {"customer_ratings": [4], "part_efficiencies": [1]}
-const MAIN = preload("res://Scenes/main.tscn")
+const MAIN_MENU = preload("res://Scenes/main_menu.tscn")
 
 @export var base_assemblies: Array[PackedScene]
 @export var additional_assemblies: Array[PackedScene]
@@ -43,7 +43,7 @@ func _on_room_area_body_exited(body: Node3D) -> void:
 		fade_in_out.visible = true
 		get_tree().create_tween().tween_property(colour_rect, "color", Color(0, 0, 0, 1), 3.5)
 		await get_tree().create_timer(3.5).timeout
-		get_tree().change_scene_to_packed(MAIN)
+		get_tree().change_scene_to_packed(MAIN_MENU)
 
 
 func next_action() -> void:
@@ -350,7 +350,7 @@ func action_5() -> void:
 
 func action_6() -> void:
 	if customer_ratings_avg >= 2.5 and part_efficiencies_avg >= 2.5:
-		for i in range(1000):
+		for i in range(100):
 			await assembly_line_loop()
 	exit.position = Vector3(0, -4.75, 6)
 	exit_light.light_energy = 0

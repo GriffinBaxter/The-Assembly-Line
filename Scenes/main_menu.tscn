@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://tqso3rfes5fg"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_13tpt"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_13tpt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.361922, 0.469266, 0.77192, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -344.0
+offset_right = 500.0
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_separation = 40
+theme_override_font_sizes/normal_font_size = 104
+text = "THE ASSEMBLY LINE"
+fit_content = true
+
+[node name="StartGame" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 76
+text = "Start Game"
+
+[node name="Spacer1" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_separation = 40
+theme_override_font_sizes/normal_font_size = 104
+fit_content = true
+
+[node name="Fullscreen" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 76
+text = "Toggle Fullscreen"
+
+[node name="Spacer2" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_separation = 40
+theme_override_font_sizes/normal_font_size = 104
+fit_content = true
+
+[node name="Credits1" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 71
+text = "CREATED BY GRIFFIN BAXTER"
+fit_content = true
+
+[node name="Credits2" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 57
+text = "(FOR THE 2024 GMTK PATREON JAM)"
+fit_content = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]

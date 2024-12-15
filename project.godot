@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="GMTK Patreon Jam 2024 - Griffin Baxter"
-run/main_scene="res://Scenes/main.tscn"
+config/name="The Assembly Line"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
