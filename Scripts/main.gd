@@ -12,7 +12,7 @@ var rng = RandomNumberGenerator.new()
 var actions := [action_1, action_2, action_3, action_4, action_5, action_6]
 var current_action := -1
 var part_attached_scene_file_path := ""
-var score := {"customer_ratings": [4], "part_efficiencies": [1]}
+var score := {"customer_ratings": [], "part_efficiencies": []}
 var customer_ratings_avg: float
 var part_efficiencies_avg: float
 var main_menu := load("res://Scenes/main_menu.tscn")
