@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cfpcrbb00te2p"]
+[gd_scene load_steps=21 format=3 uid="uid://cfpcrbb00te2p"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_n6l7l"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_va1j2"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dftiob5rum22g" path="res://Scenes/Parts/light_bulb.tscn" id="11_83r84"]
 [ext_resource type="PackedScene" uid="uid://beroll16q6dja" path="res://Scenes/Parts/laptop_screen.tscn" id="13_114ty"]
 [ext_resource type="PackedScene" uid="uid://gy3fdetee3l2" path="res://Scenes/tv.tscn" id="16_ok3rr"]
+[ext_resource type="PackedScene" uid="uid://cqa0w3ufjs1nt" path="res://Scenes/pause_menu.tscn" id="17_3kc3m"]
 
 [sub_resource type="Environment" id="Environment_dwayo"]
 background_mode = 2
@@ -30,7 +31,6 @@ size = Vector3(19, 9, 13)
 script = ExtResource("1_n6l7l")
 base_assemblies = Array[PackedScene]([ExtResource("2_ve6ix"), ExtResource("3_wv2kn")])
 additional_assemblies = Array[PackedScene]([ExtResource("6_7sdf2"), ExtResource("5_3u0nk"), ExtResource("4_p1jq4")])
-tutorial_debug = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dwayo")
@@ -165,5 +165,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+
+[node name="PauseMenu" parent="." instance=ExtResource("17_3kc3m")]
+visible = false
 
 [connection signal="body_exited" from="Room/RoomArea" to="." method="_on_room_area_body_exited"]

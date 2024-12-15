@@ -63,9 +63,12 @@ func _process(_delta: float) -> void:
 			held_part.position = Vector3(0, -0.5, -1.5)
 			camera_3d.add_child(held_part)
 
+	if Input.is_action_just_pressed("pause"):
+		main.pause_menu_toggled()
+
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and !main.paused:
 		head.rotate_y(-event.relative.x as float * SENSITIVITY)
 		camera_3d.rotate_x(-event.relative.y as float * SENSITIVITY)
 		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-60), deg_to_rad(60))

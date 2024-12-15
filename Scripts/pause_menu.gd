@@ -1,14 +1,10 @@
 extends Control
 
-const MAIN := preload("res://Scenes/main.tscn")
+signal resume
 
 
-func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-
-func _on_start_game_pressed() -> void:
-	get_tree().change_scene_to_packed(MAIN)
+func _on_resume_game_pressed() -> void:
+	resume.emit()
 
 
 func _on_fullscreen_pressed() -> void:

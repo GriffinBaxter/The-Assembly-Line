@@ -15,6 +15,7 @@ var part_attached_scene_file_path := ""
 var customer_ratings_avg: float
 var part_efficiencies_avg: float
 var main_menu := load("res://Scenes/main_menu.tscn")
+var paused := false
 
 @onready var phone: CSGBox3D = $Player/Head/Camera3D/Phone
 @onready var tv: CSGBox3D = $TV
@@ -23,11 +24,13 @@ var main_menu := load("res://Scenes/main_menu.tscn")
 @onready var exit_light: OmniLight3D = $Room/Exit/ExitLight
 @onready var fade_in_out: Control = $FadeInOut
 @onready var colour_rect: ColorRect = $FadeInOut/ColourRect
+@onready var pause_menu: Control = $PauseMenu
 
 
 func _ready() -> void:
 	additional_parts.position -= Vector3(0, 10, 0)
 	current_assemblies = base_assemblies
+	pause_menu.resume.connect(pause_menu_toggled)
 	phone.phone_hidden.connect(next_action)
 	phone.show_phone(
 		(
@@ -44,6 +47,18 @@ func _on_room_area_body_exited(body: Node3D) -> void:
 		get_tree().create_tween().tween_property(colour_rect, "color", Color(0, 0, 0, 1), 3.5)
 		await get_tree().create_timer(3.5).timeout
 		get_tree().change_scene_to_packed(main_menu)
+
+
+func pause_menu_toggled() -> void:
+	paused = !paused
+	if paused:
+		pause_menu.show()
+		Engine.time_scale = 0
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		pause_menu.hide()
+		Engine.time_scale = 1
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func next_action() -> void:

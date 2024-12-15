@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqa0w3ufjs1nt"]
+
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_trlak"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_trlak")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.470588, 0.772549, 0.470588)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -137.0
+offset_right = 500.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ResumeGame" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 76
+text = "Resume Game"
+
+[node name="Spacer1" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_separation = 40
+theme_override_font_sizes/normal_font_size = 104
+fit_content = true
+
+[node name="Fullscreen" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 76
+text = "Toggle Fullscreen"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeGame" to="." method="_on_resume_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
