@@ -29,3 +29,8 @@ horizontal_alignment = 0
 vertical_alignment = 0
 autowrap_mode = 3
 width = 2225.0
+
+[node name="TvGlow" type="SpotLight3D" parent="ScreenBody/Screen"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+light_energy = 2.0
+spot_range = 25.0
