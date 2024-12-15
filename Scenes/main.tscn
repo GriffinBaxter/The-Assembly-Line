@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cfpcrbb00te2p"]
+[gd_scene load_steps=22 format=3 uid="uid://cfpcrbb00te2p"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_n6l7l"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_va1j2"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ol3p2teki25i" path="res://Scenes/Assemblies/laptop.tscn" id="6_7sdf2"]
 [ext_resource type="PackedScene" uid="uid://i5ulvyt227ub" path="res://Scenes/Parts/leg_blue.tscn" id="7_gq6vx"]
 [ext_resource type="PackedScene" uid="uid://c30l1ontd1xyp" path="res://Scenes/phone.tscn" id="8_cessd"]
+[ext_resource type="PackedScene" uid="uid://d4l3q45ix805u" path="res://Scenes/assembly_line_indent.tscn" id="9_oh4bj"]
 [ext_resource type="PackedScene" uid="uid://kb0qnmyplc3n" path="res://Scenes/Parts/candle.tscn" id="10_x1d7j"]
 [ext_resource type="PackedScene" uid="uid://dftiob5rum22g" path="res://Scenes/Parts/light_bulb.tscn" id="11_83r84"]
 [ext_resource type="PackedScene" uid="uid://beroll16q6dja" path="res://Scenes/Parts/laptop_screen.tscn" id="13_114ty"]
@@ -62,21 +63,25 @@ use_collision = true
 size = Vector3(17, 7, 11)
 
 [node name="AssemblyLineEntry" type="CSGBox3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -1.75, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -1.75952, -2.5)
 operation = 2
 use_collision = true
-size = Vector3(1, 1.75, 1.5)
+size = Vector3(1, 1.76904, 1.5)
 
 [node name="AssemblyLineExit" type="CSGBox3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -1.75, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -1.76038, -2.5)
 operation = 2
 use_collision = true
-size = Vector3(1, 1.75, 1.5)
+size = Vector3(1, 1.77075, 1.5)
 
 [node name="AssemblyLine" type="CSGBox3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75922, -2.5)
 use_collision = true
-size = Vector3(17, 0.25, 1.5)
+size = Vector3(30, 0.231567, 1.5)
+
+[node name="Indent" parent="Room/AssemblyLine" instance=ExtResource("9_oh4bj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.124216, 0)
+visible = false
 
 [node name="Exit" type="CSGBox3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25, 6)

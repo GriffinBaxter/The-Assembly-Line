@@ -1,6 +1,6 @@
 extends Node3D
 
-const SCORE := {"customer_ratings": [4], "part_efficiencies": [1]}
+const ASSEMBLY_LINE_INDENT = preload("res://Scenes/assembly_line_indent.tscn")
 
 @export var base_assemblies: Array[PackedScene]
 @export var additional_assemblies: Array[PackedScene]
@@ -12,6 +12,7 @@ var rng = RandomNumberGenerator.new()
 var actions := [action_1, action_2, action_3, action_4, action_5, action_6]
 var current_action := -1
 var part_attached_scene_file_path := ""
+var score := {"customer_ratings": [4], "part_efficiencies": [1]}
 var customer_ratings_avg: float
 var part_efficiencies_avg: float
 var main_menu := load("res://Scenes/main_menu.tscn")
@@ -25,6 +26,7 @@ var paused := false
 @onready var fade_in_out: Control = $FadeInOut
 @onready var colour_rect: ColorRect = $FadeInOut/ColourRect
 @onready var pause_menu: Control = $PauseMenu
+@onready var assembly_line: CSGBox3D = $Room/AssemblyLine
 
 
 func _ready() -> void:
@@ -39,6 +41,27 @@ func _ready() -> void:
 			+ '\n\n(P.S. Press "Enter" to close this message)'
 		)
 	)
+	create_assembly_line_indents()
+
+
+func create_assembly_line_indents() -> void:
+	while true:
+		var assembly_line_indent = ASSEMBLY_LINE_INDENT.instantiate()
+		assembly_line.add_child.call_deferred(assembly_line_indent)
+		assembly_line_indent.position.x -= 15
+		get_tree().create_tween().tween_property(
+			assembly_line_indent,
+			"position",
+			Vector3(15, assembly_line_indent.position.y, assembly_line_indent.position.z),
+			15
+		)
+		await get_tree().create_timer(0.1).timeout
+		delete_assembly_line_indent_when_done(assembly_line_indent)
+
+
+func delete_assembly_line_indent_when_done(assembly_line_indent: MeshInstance3D) -> void:
+	await get_tree().create_timer(14.9).timeout
+	assembly_line_indent.queue_free()
 
 
 func _on_room_area_body_exited(body: Node3D) -> void:
@@ -74,9 +97,9 @@ func assembly_line_loop() -> void:
 		get_tree().get_root().add_child.call_deferred(assembly)
 		await assembly.ready
 
-		assembly.position += Vector3(-10, 1.9, -2.5)
+		assembly.position += Vector3(-15, 1.9, -2.5)
 		get_tree().create_tween().tween_property(
-			assembly, "position", Vector3(10, assembly.position.y, -2.5), 15
+			assembly, "position", Vector3(15, assembly.position.y, -2.5), 15
 		)
 		await get_tree().create_timer(15).timeout
 
@@ -266,8 +289,8 @@ func update_score_and_tv():
 
 
 func update_score(customer_rating: int, part_efficiency: int) -> void:
-	SCORE.customer_ratings.append(customer_rating)
-	SCORE.part_efficiencies.append(part_efficiency)
+	score.customer_ratings.append(customer_rating)
+	score.part_efficiencies.append(part_efficiency)
 
 
 func average(array: Array) -> float:
@@ -337,8 +360,8 @@ func action_4() -> void:
 func action_5() -> void:
 	for i in range(4):
 		await assembly_line_loop()
-	customer_ratings_avg = average(SCORE.customer_ratings)
-	part_efficiencies_avg = average(SCORE.part_efficiencies)
+	customer_ratings_avg = average(score.customer_ratings)
+	part_efficiencies_avg = average(score.part_efficiencies)
 	if customer_ratings_avg < 2.5 and part_efficiencies_avg < 2.5:
 		phone.show_phone(
 			"What have you been doing??? Horrible job all round, you're fired.\n\n-Boss"
