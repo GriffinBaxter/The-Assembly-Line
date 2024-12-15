@@ -36,8 +36,8 @@ func _ready() -> void:
 	phone.phone_hidden.connect(next_action)
 	phone.show_phone(
 		(
-			"Welcome to the job. You can move with WASD, jump with space, and pick up/drop the "
-			+ "assembly parts on the pedestals beside you.\n\n-Boss"
+			"Welcome to the job. You can move with WASD, jump with space, and press E to"
+			+ " pick up/drop the assembly parts on the pedestals beside you.\n\n-Boss"
 			+ '\n\n(P.S. Press "Enter" to close this message)'
 		)
 	)
