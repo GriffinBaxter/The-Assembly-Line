@@ -247,7 +247,7 @@ func update_score_and_tv():
 			)
 			update_score(3, 4)
 		elif assembly.part_attached.contains("light_bulb"):
-			tv.update_text("5/5\n\nI love lamp!")
+			tv.update_text("Rating: 5/5\n\nI love lamp!")
 			update_score(5, 3)
 	elif assembly.scene_file_path.contains("laptop"):
 		if !assembly.assembled:
@@ -399,7 +399,7 @@ func action_5() -> void:
 
 func action_6() -> void:
 	if customer_ratings_avg >= 2.5 and part_efficiencies_avg >= 2.5:
-		for i in range(100):
+		for i in range(4):
 			await assembly_line_loop()
 	exit.position = Vector3(0, -4.75, 6)
 	exit_light.light_energy = 0
